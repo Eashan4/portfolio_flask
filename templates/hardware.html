@@ -1,0 +1,122 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container py-4">
+  <div class="text-center mb-5" data-animate="fade-up">
+    <h1 class="fw-bold">Hardware Dashboard</h1>
+    <p class="text-muted">Live IoT sensor readings from your ESP32 and ESP8266 devices.</p>
+    <hr class="w-25 mx-auto">
+  </div>
+
+  {% if not logged_in %}
+    <div class="alert alert-danger text-center">
+      You must <a href="/login" class="alert-link">login</a> to view hardware data.
+    </div>
+  {% else %}
+    <!-- Arduino Projects Section -->
+    {% if arduino_projects %}
+      <h2 class="mt-5">Arduino Projects</h2>
+      <div class="row g-4">
+        {% for project in arduino_projects %}
+        <div class="col-md-4">
+          <div class="card shadow h-100 project-card" data-animate="hover-zoom">
+            <img src="{{ project.image }}" class="card-img-top" alt="{{ project.title }}">
+            <div class="card-body">
+              <h5 class="card-title">{{ project.title }}</h5>
+              <p class="card-text">{{ project.description }}</p>
+              <button class="btn btn-info" data-bs-toggle="modal" data-bs-target="#detailsModal{{ project.id }}">View Details</button>
+              <a href="{{ project.github }}" class="btn btn-primary" target="_blank">GitHub</a>
+              <a href="/hardware/live/{{ project.secret_id }}" class="btn btn-info btn-sm" target="_blank">Live</a>
+            </div>
+          </div>
+        </div>
+        <!-- Details Modal -->
+        <div class="modal fade" id="detailsModal{{ project.id }}" tabindex="-1" aria-labelledby="detailsModalLabel{{ project.id }}" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content animate__animated animate__fadeInUp">
+              <div class="modal-header">
+                <h5 class="modal-title" id="detailsModalLabel{{ project.id }}">{{ project.title }} Components</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                <ul class="list-group mb-3">
+                  {% for comp in project.components.split(',') %}
+                  <li class="list-group-item animate__animated animate__pulse">{{ comp.strip() }}</li>
+                  {% endfor %}
+                </ul>
+                <div class="text-muted">Secret ID: <span class="badge bg-dark">{{ project.secret_id }}</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    {% endif %}
+
+    <!-- IoT Projects Section -->
+    {% if iot_projects %}
+      <h2 class="mt-5">IoT Projects</h2>
+      <div class="row g-4">
+        {% for project in iot_projects %}
+        <div class="col-md-4">
+          <div class="card shadow h-100 project-card" data-animate="hover-zoom">
+            <img src="{{ project.image }}" class="card-img-top" alt="{{ project.title }}">
+            <div class="card-body">
+              <h5 class="card-title">{{ project.title }}</h5>
+              <p class="card-text">{{ project.description }}</p>
+              <button class="btn btn-info" data-bs-toggle="modal" data-bs-target="#detailsModal{{ project.id }}">View Details</button>
+              <a href="{{ project.github }}" class="btn btn-success" target="_blank">GitHub</a>
+              <a href="/hardware/live/{{ project.secret_id }}" class="btn btn-info btn-sm" target="_blank">Live</a>
+            </div>
+          </div>
+        </div>
+        <!-- Details Modal -->
+        <div class="modal fade" id="detailsModal{{ project.id }}" tabindex="-1" aria-labelledby="detailsModalLabel{{ project.id }}" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content animate__animated animate__fadeInUp">
+              <div class="modal-header">
+                <h5 class="modal-title" id="detailsModalLabel{{ project.id }}">{{ project.title }} Components</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                <ul class="list-group mb-3">
+                  {% for comp in project.components.split(',') %}
+                  <li class="list-group-item animate__animated animate__pulse">{{ comp.strip() }}</li>
+                  {% endfor %}
+                </ul>
+                <div class="text-muted">Secret ID: <span class="badge bg-dark">{{ project.secret_id }}</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    {% endif %}
+
+    <!-- Hardware Data Section -->
+    {% if hardware_data %}
+      <h2 class="mt-5">Live Hardware Data</h2>
+      <div class="row g-4">
+        {% for record in hardware_data %}
+        <div class="col-md-4">
+          <div class="card shadow hover-card hover-tilt p-4 h-100 text-center" data-animate="zoom-in">
+            <h4 class="fw-bold">{{ record.name }}</h4>
+            <p class="display-6">{{ record.value }}</p>
+            <p class="text-muted small">Device: {{ record.device or 'ESP' }}</p>
+            <small class="text-secondary">
+              Updated: 
+              {% if record.timestamp.strftime %}
+                {{ record.timestamp.strftime('%Y-%m-%d %H:%M:%S') }}
+              {% else %}
+                {{ record.timestamp }}
+              {% endif %}
+            </small>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    {% else %}
+      <p class="text-center text-muted">No data available yet. Try posting from your IoT device.</p>
+    {% endif %}
+  {% endif %}
+</div>
+{% endblock %}

@@ -1,0 +1,68 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.pyc
+
+# Virtual environments
+.venv/
+venv/
+ENV/
+
+# Flask/SQLAlchemy
+instance/
+*.db
+*.sqlite3
+
+# VS Code
+.vscode/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Environment
+.env
+.env.*
+
+# Zip archives
+*.zip
+
+# Misc
+*.bak
+*.swp
+
+# Ignore uploads/static generated files
+static/images/
+
+# Ignore test coverage
+htmlcov/
+.coverage
+
+# Ignore migrations (if using Flask-Migrate)
+migrations/
+
+# Ignore compiled files
+*.so
+
+# Ignore notebook checkpoints
+.ipynb_checkpoints/
+.vercel
+
+# Project junk
+waste/
+VIEW_STORED_CODE.py
+DEPLOY_TO_VERCEL.md
+WHERE_CODE_IS_STORED.md
+CODE_VIEWER_FEATURE.md
+PROJECT_STRUCTURE.md
+CHANGES_SUMMARY.md
+FIXES_APPLIED.md
+RUN_APP.md
+QUICK_START.md
+DATABASE_MIGRATION.md
+

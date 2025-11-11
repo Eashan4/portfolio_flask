@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="container py-4">
+
+    <!-- Header -->
+    <div class="text-center mb-5" data-animate="fade-up">
+        <h1 class="fw-bold">My Projects</h1>
+        <p class="text-muted">
+            Explore my Arduino and IoT innovations built using ESP32, ESP8266, and embedded systems.
+        </p>
+        <hr class="w-25 mx-auto">
+    </div>
+
+    <!-- Project Categories -->
+    <div class="row g-4 justify-content-center">
+
+        <!-- Arduino Projects -->
+        <div class="col-md-6 col-lg-5">
+            <div class="card shadow-lg h-100 hover-card hover-tilt project-card"
+                 data-animate="hover-zoom" data-delay="80ms">
+                <img src="{{ url_for('static', filename='images/arduino.jpg') }}" class="card-img-top" alt="Arduino Projects">
+                <div class="card-body text-center">
+                    <h4 class="fw-bold">Arduino Projects</h4>
+                    <p class="text-muted">Sensor-based systems, motor control, real-time displays, and automation builds.</p>
+                    <a href="/projects/arduino" class="btn btn-primary w-100">
+                        View Arduino Projects
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- IoT Projects -->
+        <div class="col-md-6 col-lg-5">
+            <div class="card shadow-lg h-100 hover-card hover-tilt project-card"
+                 data-animate="hover-zoom" data-delay="180ms">
+                <img src="{{ url_for('static', filename='images/iot.jpg') }}" class="card-img-top" alt="IoT Projects">
+                <div class="card-body text-center">
+                    <h4 class="fw-bold">IoT Projects</h4>
+                    <p class="text-muted">ESP32/ESP8266 cloud-connected devices, dashboards, and data monitoring systems.</p>
+                    <a href="/projects/iot" class="btn btn-success w-100">
+                        View IoT Projects
+                    </a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

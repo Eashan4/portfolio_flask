@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container py-4">
+    <h2 class="fw-bold text-center mb-4">Live Project Updates</h2>
+    <div class="card shadow p-4 mb-4">
+        <h4 id="project-title">Project Title: <span class="text-primary">{{ project.title if project else 'Loading...' }}</span></h4>
+        <p id="project-category">Category: <span class="text-secondary">{{ project.category if project else '' }}</span></p>
+        <p id="project-description">Description: <span>{{ project.description if project else '' }}</span></p>
+        <hr>
+        <div id="live-data">
+            <h5>Live Data:</h5>
+            <div class="alert alert-info">Live updates will appear here...</div>
+        </div>
+    </div>
+    <div class="card shadow p-4 mb-4">
+        <h5>Paste your custom HTML code to display hardware output:</h5>
+        <form method="POST" action="">
+            <textarea class="form-control mb-3" name="custom_html" rows="6" placeholder="Paste your HTML code here..."></textarea>
+            <button class="btn btn-success">Update Live Output</button>
+        </form>
+    </div>
+    <div id="custom-output">
+        {% if custom_html %}
+            {{ custom_html|safe }}
+        {% endif %}
+    </div>
+    <a href="/" class="btn btn-outline-primary">Back to Home</a>
+</div>
+{% endblock %}

@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container py-4">
+    <div class="text-center mb-5">
+        <h1 class="fw-bold">About Me</h1>
+        <p class="text-muted">A passionate developer focused on IoT, Embedded Systems, Machine Learning, and Web Development.</p>
+        <hr class="w-25 mx-auto">
+    </div>
+    <div class="row mb-5">
+        <div class="col-md-4 text-center">
+            <img src="{{ url_for('static', filename='images/profile.jpg') }}" class="rounded shadow-sm" width="250" alt="Profile Image">
+        </div>
+        <div class="col-md-8 d-flex align-items-center">
+            <div>
+                <h3 class="fw-bold">Hi, I'm <span class="text-primary">Eashan Jain</span></h3>
+                <p class="text-muted">I am an engineering student specializing in <b>Computer Science (Big Data Analytics)</b> at SRM KTR, Chennai. I love building intelligent systems that combine <b>hardware + software</b> using Python, IoT, Arduino, ESP32, Flask, ML Models, and real-time data processing.</p>
+                <p class="text-muted">I have worked on several practical projects including Smart Waste Systems, Fuel Fraud Detection, Patient Health Monitoring, ESP32-CAM Surveillance, Home Automation, and more.</p>
+            </div>
+        </div>
+    </div>
+    <hr class="my-5">
+    <h2 class="fw-bold mb-4 text-center">My Skills</h2>
+    <div class="row g-4">
+        <div class="col-md-4"><div class="card shadow h-100 text-center p-4 hover-card"><i class="bi bi-filetype-py fs-1 text-primary"></i><h5 class="fw-bold mt-3">Python</h5><p class="text-muted">Flask, APIs, Automation, ML, Scripting</p></div></div>
+        <div class="col-md-4"><div class="card shadow h-100 text-center p-4 hover-card"><i class="bi bi-wifi fs-1 text-success"></i><h5 class="fw-bold mt-3">IoT & Sensors</h5><p class="text-muted">ESP32, ESP8266, MQTT, Real-Time Data</p></div></div>
+        <div class="col-md-4"><div class="card shadow h-100 text-center p-4 hover-card"><i class="bi bi-cpu fs-1 text-danger"></i><h5 class="fw-bold mt-3">Arduino & Embedded</h5><p class="text-muted">Hardware-software integration</p></div></div>
+        <div class="col-md-4"><div class="card shadow h-100 text-center p-4 hover-card"><i class="bi bi-robot fs-1 text-warning"></i><h5 class="fw-bold mt-3">Machine Learning</h5><p class="text-muted">Classification, Regression, CV, Data Handling</p></div></div>
+        <div class="col-md-4"><div class="card shadow h-100 text-center p-4 hover-card"><i class="bi bi-globe2 fs-1 text-info"></i><h5 class="fw-bold mt-3">Web Development</h5><p class="text-muted">Flask, Bootstrap, REST APIs</p></div></div>
+        <div class="col-md-4"><div class="card shadow h-100 text-center p-4 hover-card"><i class="bi bi-hdd-network fs-1 text-secondary"></i><h5 class="fw-bold mt-3">Databases</h5><p class="text-muted">MySQL, SQLite, Cloud DBs</p></div></div>
+    </div>
+    <hr class="my-5">
+    <h2 class="fw-bold mb-4 text-center">What I Work On</h2>
+    <div class="row g-4">
+        <div class="col-md-6"><div class="card shadow p-4 h-100 hover-card"><h4 class="fw-bold">🔌 Internet of Things (IoT)</h4><p class="text-muted">Automation systems, wireless communication, real-time dashboards, ESP32/ESP8266 projects, and sensor-based intelligent systems.</p></div></div>
+        <div class="col-md-6"><div class="card shadow p-4 h-100 hover-card"><h4 class="fw-bold">🤖 AI + Embedded Systems</h4><p class="text-muted">Fusing AI with hardware: ESP32-CAM, computer vision, object detection, data-driven automation and anomaly detection systems.</p></div></div>
+    </div>
+</div>
+{% endblock %}

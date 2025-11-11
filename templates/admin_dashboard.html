@@ -1,0 +1,87 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container py-4">
+    <h1 class="fw-bold text-center mb-4">Admin Dashboard</h1>
+    <hr>
+    <div class="card shadow p-4 mb-5">
+        <h4 class="fw-bold">Add New Project</h4>
+        <form method="POST" action="/admin/add_project" enctype="multipart/form-data">
+            <input class="form-control mb-3" name="title" placeholder="Project Title" required>
+            <input class="form-control mb-3" name="category" placeholder="Category (arduino/iot/home/robot/custom)" required>
+            <textarea class="form-control mb-3" name="description" placeholder="Description" required></textarea>
+            <input class="form-control mb-3" name="components" placeholder="Components (comma separated, e.g. ESP8266, DHT22, Relay)" required>
+            <input class="form-control mb-3" name="image" placeholder="Image URL">
+            <input type="file" class="form-control mb-3" name="image_file" accept="image/*">
+            <input class="form-control mb-3" name="github" placeholder="GitHub URL">
+            <textarea class="form-control mb-3" name="custom_html" placeholder="Paste custom HTML for live output (optional)"></textarea>
+            <textarea class="form-control mb-3" name="esp_code" placeholder="Paste ESP8266 .ino code for this project (optional)" rows="8"></textarea>
+            <input class="form-control mb-3" name="secret_ids" placeholder="Secret IDs (comma separated, e.g. id1,id2,id3). Leave empty to auto-generate.">
+            <small class="text-muted">If left empty, a secret ID will be automatically generated.</small>
+            <button class="btn btn-primary w-100">Add Project</button>
+        </form>
+    </div>
+    <div class="card shadow p-4 mb-4">
+        <h4 class="fw-bold">Admin Access</h4>
+        {% if is_admin %}
+            <div class="alert alert-success">You are logged in as <strong>Admin</strong>.</div>
+            <a href="/admin/logout" class="btn btn-outline-danger mb-2">Logout</a>
+        {% else %}
+            <div class="alert alert-warning">You are not logged in as admin.</div>
+        {% endif %}
+    </div>
+    <div class="card shadow p-4 mb-4">
+        <h4 class="fw-bold">Signed Up Users</h4>
+        <table class="table table-bordered mt-3">
+            <thead><tr><th>Username</th><th>Email</th></tr></thead>
+            <tbody>
+                {% for u in users %}
+                <tr>
+                    <td>{{ u.username }}</td>
+                    <td>{{ u.email }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <div class="card shadow p-4">
+        <h4 class="fw-bold">Manage Projects</h4>
+        <table class="table table-bordered mt-3">
+            <thead><tr><th>Title</th><th>Category</th><th>Secret IDs</th><th>Live Pages</th><th>Add Secret</th><th>Delete Secret</th><th>Edit</th><th>Delete Project</th></tr></thead>
+            <tbody>
+                {% for p in all_projects %}
+                <tr>
+                    <td>{{ p.title }}</td>
+                    <td>{{ p.category }}</td>
+                    <td>
+                        {% for sid in p.secret_ids %}
+                            <span class="badge bg-dark">{{ sid }}</span>
+                        {% endfor %}
+                    </td>
+                    <td>
+                        {% for sid in p.secret_ids %}
+                            <a href="/hardware/live/{{ sid }}" class="btn btn-info btn-sm mb-1" target="_blank">Live Page ({{ sid }})</a><br>
+                        {% endfor %}
+                    </td>
+                    <td>
+                        <form method="POST" action="/admin/add_secret" style="display:inline-block;">
+                            <input type="hidden" name="project_id" value="{{ p.id }}">
+                            <button class="btn btn-success btn-sm">Add Secret</button>
+                        </form>
+                    </td>
+                    <td>
+                        {% for sid in p.secret_ids %}
+                        <form method="POST" action="/admin/delete_secret" style="display:inline-block;">
+                            <input type="hidden" name="secret_id" value="{{ sid }}">
+                            <button class="btn btn-danger btn-sm mb-1">Delete ({{ sid }})</button>
+                        </form><br>
+                        {% endfor %}
+                    </td>
+                    <td><a href="/admin/edit/{{ p.id }}" class="btn btn-warning btn-sm">Edit</a></td>
+                    <td><a href="/admin/delete/{{ p.id }}" class="btn btn-danger btn-sm">Delete</a></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

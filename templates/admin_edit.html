@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container py-4">
+  <h1 class="fw-bold text-center mb-4">Edit Project</h1>
+  <hr>
+  <form method="POST" action="" enctype="multipart/form-data" class="card shadow p-4 mx-auto" style="max-width: 800px;">
+    <input class="form-control mb-3" name="title" value="{{ project.title }}" placeholder="Project Title" required>
+    <input class="form-control mb-3" name="category" value="{{ project.category }}" placeholder="Category (arduino/iot/home/robot/custom)" required>
+    <textarea class="form-control mb-3" name="description" placeholder="Description" required rows="4">{{ project.description }}</textarea>
+    <input class="form-control mb-3" name="components" value="{{ project.components }}" placeholder="Components (comma separated, e.g. ESP8266, DHT22, Relay)" required>
+    <input class="form-control mb-3" name="image" value="{{ project.image }}" placeholder="Image URL">
+    <input type="file" class="form-control mb-3" name="image_file" accept="image/*">
+    <input class="form-control mb-3" name="github" value="{{ project.github }}" placeholder="GitHub URL">
+    
+    <label class="form-label fw-bold">Custom HTML (for live page)</label>
+    <textarea class="form-control mb-3" name="custom_html" placeholder="Paste custom HTML for live output dashboard" rows="10">{{ project.custom_html or '' }}</textarea>
+    
+    <label class="form-label fw-bold">ESP8266/ESP32 Code (.ino file)</label>
+    <textarea class="form-control mb-3" name="esp_code" placeholder="Paste ESP8266/ESP32 .ino code for this project" rows="15">{{ project.esp_code or '' }}</textarea>
+    
+    <div class="alert alert-info mb-3">
+      <strong>Secret IDs:</strong>
+      {% if project.secrets %}
+        {% for secret in project.secrets %}
+          <span class="badge bg-dark me-1">{{ secret.secret_id }}</span>
+        {% endfor %}
+      {% else %}
+        <span class="text-muted">No secrets yet. Add secrets from the admin dashboard.</span>
+      {% endif %}
+    </div>
+    
+    <button class="btn btn-primary w-100">Update Project</button>
+    <a href="/admin" class="btn btn-secondary w-100 mt-2">Back to Admin Dashboard</a>
+  </form>
+</div>
+{% endblock %}

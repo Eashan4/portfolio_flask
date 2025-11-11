@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="text-center py-5">
+    <div class="container">
+        <img src="{{ url_for('static', filename='images/profile.jpg') }}" class="rounded-circle shadow-lg mb-3" width="160" height="160" alt="Profile">
+        <h1 class="fw-bold">Hi, I'm <span class="text-primary">Eashan Jain</span></h1>
+        <p class="lead text-secondary">IoT Developer  Python Programmer  Arduino Enthusiast  AI/ML Learner</p>
+        <a href="/projects" class="btn btn-primary btn-lg mt-3 px-4">View My Projects <i class="bi bi-arrow-right-circle ms-2"></i></a>
+    </div>
+</section>
+<hr class="my-5">
+<section class="py-4">
+    <div class="container">
+        <div class="row g-4">
+            <div class="col-md-4">
+                <div class="card shadow-lg h-100 hover-card project-card" data-animate="hover-zoom">
+                    <div class="card-body text-center">
+                        <i class="bi bi-person-circle fs-1 text-primary"></i>
+                        <h4 class="fw-bold mt-3">About Me</h4>
+                        <p class="text-muted">Know about my background, passion, and journey in tech.</p>
+                        <a href="/about" class="btn btn-outline-primary">Explore</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card shadow-lg h-100 hover-card project-card" data-animate="hover-zoom">
+                    <div class="card-body text-center">
+                        <i class="bi bi-mortarboard fs-1 text-success"></i>
+                        <h4 class="fw-bold mt-3">Academia</h4>
+                        <p class="text-muted">BTech CSE (Big Data Analytics) @ SRM KTR, Chennai.</p>
+                        <a href="/academia" class="btn btn-outline-success">View Details</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card shadow-lg h-100 hover-card project-card" data-animate="hover-zoom">
+                    <div class="card-body text-center">
+                        <i class="bi bi-cpu fs-1 text-danger"></i>
+                        <h4 class="fw-bold mt-3">My Projects</h4>
+                        <p class="text-muted">Arduino, IoT, Home Automation, Robotics, AI & more.</p>
+                        <a href="/projects" class="btn btn-outline-danger">Showcase</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

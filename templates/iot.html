@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container py-4">
+
+  <!-- Section Header -->
+  <div class="text-center mb-5" data-animate="fade-up">
+    <h1 class="fw-bold">IoT Projects</h1>
+    <p class="text-muted">ESP32, ESP8266, MQTT, sensor networks, and cloud-connected solutions.</p>
+    <hr class="w-25 mx-auto">
+  </div>
+
+  <!-- IoT Projects Grid -->
+  <div class="row g-4">
+    {% for project in iot_projects %}
+    <div class="col-md-6 col-lg-4">
+      <div class="card shadow h-100 hover-card hover-tilt project-card"
+           data-animate="hover-zoom"
+           data-delay="{{ (loop.index0 % 8) * 60 }}ms">
+        <img src="{{ project.image }}" class="card-img-top" alt="{{ project.title }}">
+        <div class="card-body">
+          <h4 class="fw-bold">{{ project.title }}</h4>
+          <p class="text-muted">{{ project.description }}</p>
+          <button class="btn btn-info w-100 mb-2"
+                  data-bs-toggle="modal"
+                  data-bs-target="#detailsModal{{ project.id }}">
+            View Details
+          </button>
+          <a href="{{ project.github }}" class="btn btn-success w-100" target="_blank">
+            View Repo
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Details Modal -->
+    <div class="modal fade"
+         id="detailsModal{{ project.id }}"
+         tabindex="-1"
+         aria-labelledby="detailsModalLabel{{ project.id }}"
+         aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content animate__animated animate__fadeInUp">
+          <div class="modal-header">
+            <h5 class="modal-title" id="detailsModalLabel{{ project.id }}">{{ project.title }} Components</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <ul class="list-group mb-3">
+              {% for comp in project.components.split(',') %}
+              <li class="list-group-item animate__animated animate__pulse">{{ comp.strip() }}</li>
+              {% endfor %}
+            </ul>
+            <div class="text-muted">Secret IDs:
+              {% for sid in project.secret_ids %}
+                <span class="badge bg-dark">{{ sid }}</span>
+              {% endfor %}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+
+</div>
+{% endblock %}

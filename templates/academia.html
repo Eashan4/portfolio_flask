@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container py-4">
+    <div class="text-center mb-5">
+        <h1 class="fw-bold">Academia</h1>
+        <p class="text-muted">My academic journey, college curriculum, semester progress, achievements, and educational background.</p>
+        <hr class="w-25 mx-auto">
+    </div>
+    <div class="card shadow-lg mb-5">
+        <div class="card-body p-4">
+            <h3 class="fw-bold mb-2">🎓 B.Tech in Computer Science & Engineering</h3>
+            <h5 class="text-primary">Specialization: Big Data Analytics</h5>
+            <p class="text-muted mt-2"><b>SRM Institute of Science and Technology, Kattankulathur (KTR), Chennai</b></p>
+            <p class="mt-3">Expected Graduation: <b>May 2027</b><br>Current Status: <b>Active Student</b></p>
+            <p class="mt-3">I’m currently learning core subjects like Data Structures, Algorithms, Python Programming, Database Management, Operating Systems, Machine Learning, and Embedded Systems along with hands-on IoT and Python projects.</p>
+        </div>
+    </div>
+    <h2 class="fw-bold text-center mb-4">Academic Performance</h2>
+    <div class="row g-4 mb-5">
+        <div class="col-md-6"><div class="card shadow-sm h-100 p-4"><h4 class="fw-bold text-primary">Semester 1</h4><p class="text-muted">GPA: 7.8</p>
+            <ul><li>Python Programming</li><li>Engineering Mathematics – I</li><li>Chemistry</li><li>Problem Solving</li><li>Basic Electrical Engineering</li></ul></div></div>
+        <div class="col-md-6"><div class="card shadow-sm h-100 p-4"><h4 class="fw-bold text-success">Semester 2</h4><p class="text-muted">GPA: 7.9</p>
+            <ul><li>Data Structures and Algorithms</li><li>Physics</li><li>Operating Systems</li><li>Mathematics – II</li><li>Web Technology (HTML, CSS, JS)</li></ul></div></div>
+    </div>
+    <hr class="my-5">
+    <h2 class="fw-bold text-center mb-4">Academic Timeline</h2>
+    <div class="timeline">
+        <div class="timeline-item left"><div class="timeline-content shadow"><h5 class="fw-bold">2023 – Joined SRM KTR</h5><p class="text-muted">Started B.Tech CSE (Big Data Analytics).</p></div></div>
+        <div class="timeline-item right"><div class="timeline-content shadow"><h5 class="fw-bold">2023–2024 – Core Engineering Year</h5><p class="text-muted">Learned programming fundamentals and electronics basics.</p></div></div>
+        <div class="timeline-item left"><div class="timeline-content shadow"><h5 class="fw-bold">2024–2025 – Project Building Phase</h5><p class="text-muted">Developed IoT, Arduino, Flask, ML, ESP32-CAM projects.</p></div></div>
+        <div class="timeline-item right"><div class="timeline-content shadow"><h5 class="fw-bold">2025–2027 – Specialization & Research</h5><p class="text-muted">Focused on AI + IoT, ML, and data-driven systems.</p></div></div>
+    </div>
+    <hr class="my-5">
+    <h2 class="fw-bold text-center mb-4">Achievements</h2>
+    <div class="row g-4">
+        <div class="col-md-4"><div class="card shadow p-4 h-100 text-center hover-card"><i class="bi bi-trophy fs-1 text-warning"></i><h5 class="fw-bold mt-3">Hackathon Participation</h5><p class="text-muted">Developed innovative systems combining AI and IoT.</p></div></div>
+        <div class="col-md-4"><div class="card shadow p-4 h-100 text-center hover-card"><i class="bi bi-stars fs-1 text-primary"></i><h5 class="fw-bold mt-3">Research Projects</h5><p class="text-muted">Fuel Fraud Detection, Smart Monitoring Systems, etc.</p></div></div>
+        <div class="col-md-4"><div class="card shadow p-4 h-100 text-center hover-card"><i class="bi bi-graph-up-arrow fs-1 text-success"></i><h5 class="fw-bold mt-3">Skill Growth</h5><p class="text-muted">Improved significantly in Python, IoT, ML, and systems design.</p></div></div>
+    </div>
+</div>
+<style>
+.timeline{position:relative;max-width:900px;margin:0 auto}
+.timeline::after{content:"";position:absolute;width:6px;background:#0d6efd;top:0;bottom:0;left:50%;margin-left:-3px}
+.timeline-item{padding:20px 40px;position:relative;width:50%}
+.timeline-item.left{left:0}.timeline-item.right{left:50%}
+.timeline-content{background:#fff;padding:20px;border-radius:10px}
+.timeline-item.right .timeline-content{margin-left:20px}
+.timeline-item.left .timeline-content{margin-right:20px}
+</style>
+{% endblock %}
